@@ -5,7 +5,7 @@
 // see https://nextjs.org/docs/basic-features/typescript for more information.
 declare namespace NodeJS {
   interface ProcessEnv {
-    readonly NEXT_PUBLIC_API_KEY: 'development' | 'production' | 'test';
+    readonly NEXT_PUBLIC_API_KEY: string;
     readonly PUBLIC_URL: string;
   }
 }
