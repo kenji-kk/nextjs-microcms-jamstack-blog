@@ -15,7 +15,7 @@ export default function BlogPageId({ blog, totalCount }: Props) {
       <ul>
         {blog.map(blog => (
           <li key={blog.id}>
-            <Link href={`blog/${blog.id}`}>
+            <Link href={`${blog.id}`}>
               <a>{blog.title}</a>
             </Link>
           </li>
