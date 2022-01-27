@@ -1,12 +1,22 @@
 import Link from "next/link";
 import { Key, ReactChild, ReactFragment, ReactPortal } from "react";
-import { client } from "../libs/client";
+import { Pagination } from '../components/Pagination';
 
-export default function Home({ blog }: { blog: { id: number, title: string, content: string }[] }) {
+interface Props {
+  blog: { id: number, title: string, content: string }[];
+  totalCount: number;
+}
+
+interface Blog {
+  id: Key | null | undefined; 
+  title: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined
+}
+
+export default function Home({ blog, totalCount }: Props) {
   return (
     <div>
       <ul>
-        {blog.map((blog: { id: Key | null | undefined; title: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; }) => (
+        {blog.map((blog: Blog) => (
           <li key={blog.id}>
             <Link href={`/blog/${blog.id}`}>
               <a>{blog.title}</a>
@@ -14,17 +24,23 @@ export default function Home({ blog }: { blog: { id: number, title: string, cont
           </li>
         ))}
       </ul>
+      <Pagination totalCount={totalCount} pageNum={0} />
     </div>
   );
 }
 
-// データをテンプレートに受け渡す部分の処理を記述します
 export const getStaticProps = async () => {
-  const data = await client.get({ endpoint: "blog" });
+  const key = {
+    headers: {'X-MICROCMS-API-KEY': process.env.NEXT_PUBLIC_API_KEY},
+  };
+  const data = await fetch('https://kenji-blog.microcms.io/api/v1/blog?offset=0&limit=5', key)
+    .then(res => res.json())
+    .catch(() => null);
 
   return {
     props: {
       blog: data.contents,
+      totalCount: data.totalCount
     },
   };
 };
