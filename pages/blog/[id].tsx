@@ -1,9 +1,18 @@
 // pages/blog/[id].js
 import { client } from '../../libs/client';
 import styles from '../../styles/Home.module.scss';
-import { useRouter } from 'next/router'
 
-export default function BlogId({ blog }: {blog: { id: string, title: string, content: string, publishedAt: Date, body: any, category: any } }) {
+interface Blog {
+  blog: 
+  { id: string,
+    title: string, 
+    content: string, 
+    publishedAt: Date, 
+    body: any, 
+    category: any }
+}
+
+export default function BlogId({ blog }: Blog) {
   return (
     <main className={styles.main}>
     <h1 className={styles.title}>{blog.title}</h1>
