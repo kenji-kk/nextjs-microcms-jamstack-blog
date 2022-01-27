@@ -1,6 +1,7 @@
 // pages/blog/[id].js
 import { client } from '../../libs/client';
 import styles from '../../styles/Home.module.scss';
+import { useRouter } from 'next/router'
 
 export default function BlogId({ blog }: {blog: { id: string, title: string, content: string, publishedAt: Date, body: any, category: any } }) {
   return (
@@ -23,7 +24,7 @@ export const getStaticPaths = async () => {
   const data = await client.get({ endpoint: "blog" });
 
   const paths = data.contents.map((content: { id: number; }) => `/blog/${content.id}`);
-  return { paths, fallback: false };
+  return { paths, fallback: 'blocking' };
 };
 
 // データをテンプレートに受け渡す部分の処理を記述します
