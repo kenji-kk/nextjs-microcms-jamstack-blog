@@ -7,11 +7,16 @@ interface Props {
   totalCount: number;
 }
 
+interface Blog {
+  id: Key | null | undefined; 
+  title: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined
+}
+
 export default function Home({ blog, totalCount }: Props) {
   return (
     <div>
       <ul>
-        {blog.map((blog: { id: Key | null | undefined; title: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; }) => (
+        {blog.map((blog: Blog) => (
           <li key={blog.id}>
             <Link href={`/blog/${blog.id}`}>
               <a>{blog.title}</a>
