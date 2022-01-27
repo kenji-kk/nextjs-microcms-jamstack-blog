@@ -9,8 +9,10 @@ interface Props {
 export const Pagination = ({ totalCount, pageNum }: Props) => {
   const PER_PAGE = 2;
 
-  const range = (pagesNumber :number) =>
-        [...Array(pagesNumber)].map((_, i) => 1 + i)
+  const range = (pagesNumber :number) =>{
+    const paginationItem = [...Array(pagesNumber)].slice(pageNum, pageNum + 5)
+    return paginationItem.map((_, i) => 1 + i)
+  }
 
   return (
     <ul>
