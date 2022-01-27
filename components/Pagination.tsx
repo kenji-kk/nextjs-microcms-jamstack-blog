@@ -3,10 +3,11 @@ import Link from 'next/link';
 
 interface Props {
   totalCount: number;
+  pageNum: number;
 }
 
-export const Pagination = ({ totalCount }: Props) => {
-  const PER_PAGE = 5;
+export const Pagination = ({ totalCount, pageNum }: Props) => {
+  const PER_PAGE = 2;
 
   const range = (pagesNumber :number) =>
         [...Array(pagesNumber)].map((_, i) => 1 + i)
