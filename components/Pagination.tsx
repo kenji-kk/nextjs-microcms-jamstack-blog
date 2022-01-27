@@ -7,16 +7,20 @@ interface Props {
 }
 
 export const Pagination = ({ totalCount, pageNum }: Props) => {
-  const PER_PAGE = 2;
+  const PER_PAGE = 5;
 
-  const range = (pagesNumber :number) =>{
-    const paginationItem = [...Array(pagesNumber)].slice(pageNum, pageNum + 5)
-    return paginationItem.map((_, i) => 1 + i)
+  const range = (pagesNumber: number, pageNum: number)=>{
+    if(pageNum < 3){
+      return [...Array(pagesNumber)].map((_, i) => 1 + i).slice(0, 5);
+    }
+    return [...Array(pagesNumber)].map((_, i) => 1 + i).slice(Number(pageNum) - 3, Number(pageNum) + 2);
   }
+    
+  
 
   return (
     <ul>
-      {range(Math.ceil(totalCount / PER_PAGE)).map((number, index) => (
+      {range(Math.ceil(totalCount / PER_PAGE), pageNum).map((number, index) => (
         <li key={index}>
           <Link href={ `/blog/page/${number}`}>
             <a>{number}</a>

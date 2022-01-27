@@ -1,15 +1,16 @@
 import Link from 'next/link';
 import { Pagination } from '../../../components/Pagination';
 
-const PER_PAGE = 2; 
+const PER_PAGE = 5; 
 
 interface Props {
   blog: { id: number, title: string, content: string }[];
   totalCount: number;
+  pageNum: number;
 }
 
 // pages/blog/[id].js
-export default function BlogPageId({ blog, totalCount }: Props) {
+export default function BlogPageId({ blog, totalCount, pageNum }: Props) {
   return (
     <div>
       <ul>
@@ -21,7 +22,7 @@ export default function BlogPageId({ blog, totalCount }: Props) {
           </li>
         ))}
       </ul>
-      <Pagination totalCount={totalCount} />
+      <Pagination totalCount={totalCount} pageNum={pageNum}/>
     </div>
   );
 }
@@ -55,14 +56,15 @@ export const getStaticProps = async (context: { params: { id: number }; }) => {
   };
 
   const data = await fetch(
-    `https://kenji-blog.microcms.io/api/v1/blog?offset=${(id - 1) * 2}&limit=2`,
+    `https://kenji-blog.microcms.io/api/v1/blog?offset=${(id - 1) * 5}&limit=5`,
     key
   ).then(res => res.json()).catch(() => null)
 
   return {
     props: {
       blog: data.contents,
-      totalCount: data.totalCount
+      totalCount: data.totalCount,
+      pageNum: id
     }
   };
 };
