@@ -20,10 +20,10 @@ export default function BlogId({ blog }: {blog: { id: string, title: string, con
 
 // 静的生成のためのパスを指定します
 export const getStaticPaths = async () => {
-  const data = await client.get({ endpoint: "blog" });
+  const data = await client.get({ endpoint: "blog", queries: {limit: 1000} });
 
   const paths = data.contents.map((content: { id: number; }) => `/blog/${content.id}`);
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 };
 
 // データをテンプレートに受け渡す部分の処理を記述します
