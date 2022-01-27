@@ -19,14 +19,16 @@ export const Pagination = ({ totalCount, pageNum }: Props) => {
   
 
   return (
-    <ul>
-      {range(Math.ceil(totalCount / PER_PAGE), pageNum).map((number, index) => (
-        <li key={index}>
-          <Link href={ `/blog/page/${number}`}>
-            <a>{number}</a>
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <div>
+      <ul className='flex bg-gray-200 w-48 justify-around mr-auto ml-auto'>
+        {range(Math.ceil(totalCount / PER_PAGE), pageNum).map((number, index) => (
+          <li key={index}>
+            <Link href={ `/blog/page/${number}`}>
+              <a>{number}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
