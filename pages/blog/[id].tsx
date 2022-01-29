@@ -1,30 +1,32 @@
-// pages/blog/[id].js
+import { VFC } from 'react'
+import { Layout } from '../../components/templates/Layout';
 import { client } from '../../libs/client';
 import styles from '../../styles/Home.module.scss';
 
-interface Blog {
+type Props = {
   blog: 
-  { id: string,
-    title: string, 
-    content: string, 
-    publishedAt: Date, 
-    body: any, 
-    category: any }
+  { id: string;
+    title: string;
+    content: string;
+    publishedAt: Date;
+    body: any;
+    category: any; 
+  };
 }
 
-export default function BlogId({ blog }: Blog) {
+const BlogId:VFC<Props> = ({ blog }) => {
   return (
-    <main className={styles.main}>
-    <h1 className={styles.title}>{blog.title}</h1>
-    <p className={styles.publishedAt}>{blog.publishedAt}</p>
-    <p className="category">{blog.category && `${blog.category.name}`}</p>
-    <div
-      dangerouslySetInnerHTML={{
-        __html: `${blog.body}`,
-      }}
-      className={styles.post}
-    />
-  </main>
+    <Layout>
+      <h1 className={styles.title}>{blog.title}</h1>
+      <p className={styles.publishedAt}>{blog.publishedAt}</p>
+      <p className="category">{blog.category && `${blog.category.name}`}</p>
+      <div
+        dangerouslySetInnerHTML={{
+          __html: `${blog.body}`,
+        }}
+        className={styles.post}
+      />
+    </Layout>
   );
 }
 
@@ -47,3 +49,5 @@ export const getStaticProps = async (context: { params: { id: string; }; }) => {
     },
   };
 };
+
+export  default BlogId;

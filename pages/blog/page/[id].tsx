@@ -1,29 +1,32 @@
+import { VFC } from 'react'
 import Link from 'next/link';
-import { Pagination } from '../../../components/Pagination';
-
+import { Pagination } from '../../../components/molecules/Pagination';
+import { Layout } from '../../../components/templates/Layout';
 const PER_PAGE = 5; 
 
-interface Props {
+type Props ={
   blog: { id: number, title: string, content: string }[];
   totalCount: number;
   pageNum: number;
 }
 
 // pages/blog/[id].js
-export default function BlogPageId({ blog, totalCount, pageNum }: Props) {
+const BlogPageId:VFC<Props> = ({ blog, totalCount, pageNum }) =>{
   return (
-    <div>
-      <ul>
-        {blog.map(blog => (
-          <li key={blog.id}>
-            <Link href={`/blog/${blog.id}`}>
-              <a>{blog.title}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
-      <Pagination totalCount={totalCount} pageNum={pageNum}/>
-    </div>
+    <Layout>
+      <div>
+        <ul>
+          {blog.map(blog => (
+            <li key={blog.id}>
+              <Link href={`/blog/${blog.id}`}>
+                <a>{blog.title}</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <Pagination totalCount={totalCount} pageNum={pageNum}/>
+      </div>
+    </Layout>
   );
 }
 
@@ -68,3 +71,5 @@ export const getStaticProps = async (context: { params: { id: number }; }) => {
     }
   };
 };
+
+export  default BlogPageId;

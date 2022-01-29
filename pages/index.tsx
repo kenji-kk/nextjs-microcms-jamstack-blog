@@ -1,31 +1,35 @@
+import { VFC } from 'react'
 import Link from "next/link";
 import { Key, ReactChild, ReactFragment, ReactPortal } from "react";
-import { Pagination } from '../components/Pagination';
+import { Pagination } from '../components/molecules/Pagination';
+import { Layout } from '../components/templates/Layout';
 
-interface Props {
+type Props = {
   blog: { id: number, title: string, content: string }[];
   totalCount: number;
 }
 
-interface Blog {
+type Blog = {
   id: Key | null | undefined; 
-  title: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined
+  title: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined;
 }
 
-export default function Home({ blog, totalCount }: Props) {
+const Home:VFC<Props> = ({ blog, totalCount }) => {
   return (
-    <div>
-      <ul>
-        {blog.map((blog: Blog) => (
-          <li key={blog.id}>
-            <Link href={`/blog/${blog.id}`}>
-              <a>{blog.title}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
-      <Pagination totalCount={totalCount} pageNum={1} />
-    </div>
+    <Layout>
+      <div>
+        <ul>
+          {blog.map((blog: Blog) => (
+            <li key={blog.id}>
+              <Link href={`/blog/${blog.id}`}>
+                <a>{blog.title}</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <Pagination totalCount={totalCount} pageNum={1} />
+      </div>
+    </Layout>
   );
 }
 
@@ -44,3 +48,5 @@ export const getStaticProps = async () => {
     },
   };
 };
+
+export  default Home;
