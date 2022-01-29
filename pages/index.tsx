@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Key, ReactChild, ReactFragment, ReactPortal } from "react";
-import { Pagination } from '../components/Pagination';
+import { Pagination } from '../components/molecules/Pagination';
 
 interface Props {
   blog: { id: number, title: string, content: string }[];

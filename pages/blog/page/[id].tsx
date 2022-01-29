@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Pagination } from '../../../components/Pagination';
+import { Pagination } from '../../../components/molecules/Pagination';
 
 const PER_PAGE = 5; 
 
