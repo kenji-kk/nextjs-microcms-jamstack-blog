@@ -1,19 +1,20 @@
+import { VFC } from 'react'
 import Link from "next/link";
 import { Key, ReactChild, ReactFragment, ReactPortal } from "react";
 import { Pagination } from '../components/molecules/Pagination';
 import { Layout } from '../components/templates/Layout';
 
-interface Props {
+type Props = {
   blog: { id: number, title: string, content: string }[];
   totalCount: number;
 }
 
-interface Blog {
+type Blog = {
   id: Key | null | undefined; 
-  title: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined
+  title: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined;
 }
 
-export default function Home({ blog, totalCount }: Props) {
+const Home:VFC<Props> = ({ blog, totalCount }) => {
   return (
     <Layout>
       <div>
@@ -47,3 +48,5 @@ export const getStaticProps = async () => {
     },
   };
 };
+
+export  default Home;

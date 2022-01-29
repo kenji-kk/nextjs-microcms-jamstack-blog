@@ -1,16 +1,17 @@
+import { VFC } from 'react'
 import Link from 'next/link';
 import { Pagination } from '../../../components/molecules/Pagination';
 import { Layout } from '../../../components/templates/Layout';
 const PER_PAGE = 5; 
 
-interface Props {
+type Props ={
   blog: { id: number, title: string, content: string }[];
   totalCount: number;
   pageNum: number;
 }
 
 // pages/blog/[id].js
-export default function BlogPageId({ blog, totalCount, pageNum }: Props) {
+const BlogPageId:VFC<Props> = ({ blog, totalCount, pageNum }) =>{
   return (
     <Layout>
       <div>
@@ -70,3 +71,5 @@ export const getStaticProps = async (context: { params: { id: number }; }) => {
     }
   };
 };
+
+export  default BlogPageId;
