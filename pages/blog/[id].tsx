@@ -1,4 +1,5 @@
 // pages/blog/[id].js
+import { Layout } from '../../components/templates/Layout';
 import { client } from '../../libs/client';
 import styles from '../../styles/Home.module.scss';
 
@@ -14,17 +15,17 @@ interface Blog {
 
 export default function BlogId({ blog }: Blog) {
   return (
-    <main className={styles.main}>
-    <h1 className={styles.title}>{blog.title}</h1>
-    <p className={styles.publishedAt}>{blog.publishedAt}</p>
-    <p className="category">{blog.category && `${blog.category.name}`}</p>
-    <div
-      dangerouslySetInnerHTML={{
-        __html: `${blog.body}`,
-      }}
-      className={styles.post}
-    />
-  </main>
+    <Layout>
+      <h1 className={styles.title}>{blog.title}</h1>
+      <p className={styles.publishedAt}>{blog.publishedAt}</p>
+      <p className="category">{blog.category && `${blog.category.name}`}</p>
+      <div
+        dangerouslySetInnerHTML={{
+          __html: `${blog.body}`,
+        }}
+        className={styles.post}
+      />
+    </Layout>
   );
 }
 

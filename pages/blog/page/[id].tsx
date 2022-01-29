@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Pagination } from '../../../components/molecules/Pagination';
-
+import { Layout } from '../../../components/templates/Layout';
 const PER_PAGE = 5; 
 
 interface Props {
@@ -12,18 +12,20 @@ interface Props {
 // pages/blog/[id].js
 export default function BlogPageId({ blog, totalCount, pageNum }: Props) {
   return (
-    <div>
-      <ul>
-        {blog.map(blog => (
-          <li key={blog.id}>
-            <Link href={`/blog/${blog.id}`}>
-              <a>{blog.title}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
-      <Pagination totalCount={totalCount} pageNum={pageNum}/>
-    </div>
+    <Layout>
+      <div>
+        <ul>
+          {blog.map(blog => (
+            <li key={blog.id}>
+              <Link href={`/blog/${blog.id}`}>
+                <a>{blog.title}</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <Pagination totalCount={totalCount} pageNum={pageNum}/>
+      </div>
+    </Layout>
   );
 }
 
