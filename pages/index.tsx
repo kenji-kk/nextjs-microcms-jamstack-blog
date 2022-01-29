@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Key, ReactChild, ReactFragment, ReactPortal } from "react";
 import { Pagination } from '../components/molecules/Pagination';
+import { Header } from '../components/organisms/Header';
 
 interface Props {
   blog: { id: number, title: string, content: string }[];
@@ -15,6 +16,7 @@ interface Blog {
 export default function Home({ blog, totalCount }: Props) {
   return (
     <div>
+      <Header />
       <ul>
         {blog.map((blog: Blog) => (
           <li key={blog.id}>
