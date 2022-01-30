@@ -17,10 +17,10 @@ type Blog = {
 const Home:VFC<Props> = ({ blog, totalCount }) => {
   return (
     <Layout>
-      <div>
-        <ul>
+      <div className='mt-10'>
+        <ul className='text-center'>
           {blog.map((blog: Blog) => (
-            <li key={blog.id}>
+            <li key={blog.id} className='mb-5'>
               <Link href={`/blog/${blog.id}`}>
                 <a>{blog.title}</a>
               </Link>
