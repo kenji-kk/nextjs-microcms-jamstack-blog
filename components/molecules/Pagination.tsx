@@ -19,9 +19,9 @@ export const Pagination = ({ totalCount, pageNum }: Props) => {
 
   return (
     <div>
-      <ul className='flex bg-gray-200 w-48 justify-around mr-auto ml-auto'>
+      <ul className='flex bg-purple-600 w-48 justify-around mr-auto ml-auto'>
         {range(Math.ceil(totalCount / PER_PAGE), pageNum).map((number, index) => (
-          <li key={index} className={number == pageNum ? 'w-5 text-blue-700 bg-green-200 text-center' : 'w-5 text-center'}>
+          <li key={index} className={number == pageNum ? 'w-5 text-purple-700 bg-purple-300 text-center' : 'w-5 text-center text-teal-200 '}>
             <Link href={ `/blog/page/${number}`}>
               <a>{number}</a>
             </Link>

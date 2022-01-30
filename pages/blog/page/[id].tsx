@@ -14,10 +14,10 @@ type Props ={
 const BlogPageId:VFC<Props> = ({ blog, totalCount, pageNum }) =>{
   return (
     <Layout>
-      <div>
-        <ul>
+      <div className='mt-10'>
+        <ul className='text-center'>
           {blog.map(blog => (
-            <li key={blog.id}>
+            <li key={blog.id} className='mb-5'>
               <Link href={`/blog/${blog.id}`}>
                 <a>{blog.title}</a>
               </Link>
