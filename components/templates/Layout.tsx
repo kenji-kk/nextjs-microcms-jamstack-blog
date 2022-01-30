@@ -7,11 +7,11 @@ type Props = {
 
 export const Layout:VFC<Props> = ({children}) => {
   return (
-    <div>
+    <div className='h-full'>
       <header>
         <Header />
       </header>
-      <main>
+      <main className='bg-purple-200 h-full'>
         {children}
       </main>
     </div>
