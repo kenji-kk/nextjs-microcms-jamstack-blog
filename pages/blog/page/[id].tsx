@@ -2,10 +2,10 @@ import { VFC } from 'react'
 import Link from 'next/link';
 import { Pagination } from '../../../components/molecules/Pagination';
 import { Layout } from '../../../components/templates/Layout';
-const PER_PAGE = 5; 
+const PER_PAGE = 6; 
 
 type Props ={
-  blog: { id: number, title: string, content: string }[];
+  blog: { id: number, title: string, content: string, body: any }[];
   totalCount: number;
   pageNum: number;
 }
@@ -14,14 +14,21 @@ type Props ={
 const BlogPageId:VFC<Props> = ({ blog, totalCount, pageNum }) =>{
   return (
     <Layout>
-      <div className='mt-10'>
-        <ul className='text-center'>
+      <div className='mt-10 bg-purple-200'>
+        <ul className=' grid lg:grid-cols-2 gap-10 w-9/12 mx-auto mb-10'>
           {blog.map(blog => (
-            <li key={blog.id} className='mb-5'>
-              <Link href={`/blog/${blog.id}`}>
-                <a>{blog.title}</a>
-              </Link>
-            </li>
+            <Link key={blog.id} href={`/blog/${blog.id}`}>
+              <a className='block'>
+              <li  className='pt-5 pb-5 border-2 border-purple-400 hover:bg-teal-100'>
+                <p className='text-center pb-5 border-b border-purple-300 text-2xl'>{blog.title}</p>
+                  <div
+                    dangerouslySetInnerHTML={{
+                    __html: `${blog.body}`,}}
+                    className='mx-10 mt-5'>
+                </div>
+                </li>
+              </a>
+            </Link>
           ))}
         </ul>
         <Pagination totalCount={totalCount} pageNum={pageNum}/>
@@ -59,7 +66,7 @@ export const getStaticProps = async (context: { params: { id: number }; }) => {
   };
 
   const data = await fetch(
-    `https://kenji-blog.microcms.io/api/v1/blog?offset=${(id - 1) * 5}&limit=5`,
+    `https://kenji-blog.microcms.io/api/v1/blog?offset=${(id - 1) * 6}&limit=6`,
     key
   ).then(res => res.json()).catch(() => null)
 
