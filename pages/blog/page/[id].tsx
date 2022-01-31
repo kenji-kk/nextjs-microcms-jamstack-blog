@@ -5,7 +5,7 @@ import { Layout } from '../../../components/templates/Layout';
 const PER_PAGE = 5; 
 
 type Props ={
-  blog: { id: number, title: string, content: string }[];
+  blog: { id: number, title: string, content: string, body: any }[];
   totalCount: number;
   pageNum: number;
 }
@@ -15,11 +15,18 @@ const BlogPageId:VFC<Props> = ({ blog, totalCount, pageNum }) =>{
   return (
     <Layout>
       <div className='mt-10'>
-        <ul className='text-center'>
+        <ul className=' grid grid-cols-2 gap-4 w-9/12 mx-auto mb-10'>
           {blog.map(blog => (
-            <li key={blog.id} className='mb-5'>
+            <li key={blog.id} className='pt-5 pb-5 border-2 border-purple-400'>
               <Link href={`/blog/${blog.id}`}>
-                <a>{blog.title}</a>
+                <a className='block'>
+                    <p className='text-center pb-5 border-b border-purple-300 text-2xl'>{blog.title}</p>
+                    <div
+                      dangerouslySetInnerHTML={{
+                      __html: `${blog.body}`,}}
+                      className='mx-10 mt-5'>
+                    </div>
+                </a>
               </Link>
             </li>
           ))}
