@@ -15,7 +15,7 @@ const BlogPageId:VFC<Props> = ({ blog, totalCount, pageNum }) =>{
   return (
     <Layout>
       <div className='mt-10'>
-        <ul className=' grid grid-cols-2 gap-4 w-9/12 mx-auto mb-10'>
+        <ul className=' grid grid-cols-2 gap-10 w-9/12 mx-auto mb-10'>
           {blog.map(blog => (
             <Link key={blog.id} href={`/blog/${blog.id}`}>
               <a className='block'>
