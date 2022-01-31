@@ -17,7 +17,7 @@ type Blog = {
 const Home:VFC<Props> = ({ blog, totalCount }) => {
   return (
     <Layout>
-      <div className='mt-10'>
+      <div className='mt-10 bg-purple-200'>
         <ul className=' grid lg:grid-cols-2 gap-10 w-9/12 mx-auto mb-10'>
           {blog.map(blog => (
             <Link key={blog.id} href={`/blog/${blog.id}`}>
