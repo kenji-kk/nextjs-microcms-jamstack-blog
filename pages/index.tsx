@@ -44,7 +44,7 @@ export const getStaticProps = async () => {
   const key = {
     headers: {'X-MICROCMS-API-KEY': process.env.NEXT_PUBLIC_API_KEY},
   };
-  const data = await fetch('https://kenji-blog.microcms.io/api/v1/blog?offset=0&limit=5', key)
+  const data = await fetch('https://kenji-blog.microcms.io/api/v1/blog?offset=0&limit=6', key)
     .then(res => res.json())
     .catch(() => null);
 

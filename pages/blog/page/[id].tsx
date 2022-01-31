@@ -2,7 +2,7 @@ import { VFC } from 'react'
 import Link from 'next/link';
 import { Pagination } from '../../../components/molecules/Pagination';
 import { Layout } from '../../../components/templates/Layout';
-const PER_PAGE = 5; 
+const PER_PAGE = 6; 
 
 type Props ={
   blog: { id: number, title: string, content: string, body: any }[];
@@ -66,7 +66,7 @@ export const getStaticProps = async (context: { params: { id: number }; }) => {
   };
 
   const data = await fetch(
-    `https://kenji-blog.microcms.io/api/v1/blog?offset=${(id - 1) * 5}&limit=5`,
+    `https://kenji-blog.microcms.io/api/v1/blog?offset=${(id - 1) * 6}&limit=6`,
     key
   ).then(res => res.json()).catch(() => null)
 

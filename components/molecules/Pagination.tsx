@@ -6,7 +6,7 @@ interface Props {
 }
 
 export const Pagination = ({ totalCount, pageNum }: Props) => {
-  const PER_PAGE = 5;
+  const PER_PAGE = 6;
 
   const range = (pagesNumber: number, pageNum: number)=>{
     if(pageNum < 3){
