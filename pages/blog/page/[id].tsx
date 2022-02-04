@@ -5,7 +5,7 @@ import { Layout } from '../../../components/templates/Layout';
 const PER_PAGE = 6; 
 
 type Props ={
-  blog: { id: number, title: string, content: string, body: any }[];
+  blog: { id: number, title: string, content: string, body: any, description: string }[];
   totalCount: number;
   pageNum: number;
 }
@@ -21,11 +21,7 @@ const BlogPageId:VFC<Props> = ({ blog, totalCount, pageNum }) =>{
               <a className='block w-80 md:w-96 lg:w-full'>
               <li  className='pt-5 pb-5 border-2 border-purple-400 hover:bg-teal-100  h-36 w-full overflow-hidden'>
                 <p className='text-center pb-5 overflow-scroll border-b border-purple-300 text-2xl'>{blog.title}</p>
-                  <div
-                    dangerouslySetInnerHTML={{
-                    __html: `${blog.body}`,}}
-                    className='mx-10 mt-5 '>
-                </div>
+                <p className='mx-10 mt-5' >{blog.description}</p>
                 </li>
               </a>
             </Link>
