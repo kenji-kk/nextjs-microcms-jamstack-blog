@@ -20,9 +20,9 @@ const BlogPageId:VFC<Props> = ({ blog, totalCount, pageNum }) =>{
             <Link key={blog.id} href={`/blog/${blog.id}`}>
               <a className='block w-80 md:w-96 lg:w-full'>
               <li  className='pt-5 pb-5 border-2 border-purple-400 hover:bg-teal-100  h-36 w-full overflow-hidden'>
-                <p className='text-center pb-5 overflow-scroll border-b border-purple-300 text-2xl'>{blog.title}</p>
-                <p className='mx-10 mt-5' >{blog.description}</p>
-                </li>
+                <p className=' mx-10 text-center pb-5 overflow-scroll border-b border-purple-300 text-2xl'>{blog.title}</p>
+                <p className='mx-10 mt-5 overflow-scroll' >{blog.description}</p>
+              </li>
               </a>
             </Link>
           ))}
