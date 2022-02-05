@@ -22,10 +22,10 @@ const Home:VFC<Props> = ({ blog, totalCount }) => {
           {blog.map(blog => (
             <Link key={blog.id} href={`/blog/${blog.id}`}>
               <a className='block w-80 md:w-96 lg:w-full'>
-              <li  className='pt-5 pb-5 border-2 border-purple-400 hover:bg-teal-100  h-36 w-full overflow-hidden whitespace-nowrap'>
-                <p className=' mx-10 text-center pb-5 overflow-scroll border-b border-purple-300 text-2xl'>{blog.title}</p>
-                <p className='mx-10 mt-5 overflow-scroll' >{blog.description}</p>
-              </li>
+                <li  className='pt-5 pb-5 border-2 border-purple-400 hover:bg-teal-100  h-38 w-full overflow-hidden '>
+                  <p className=' mx-10 text-center pb-5 overflow-scroll border-b border-purple-300 text-2xl whitespace-nowrap'>{blog.title}</p>
+                  <p className='mx-10 mt-5  overflow-y-scroll h-12' >{blog.description}</p>
+                </li>
               </a>
             </Link>
           ))}
